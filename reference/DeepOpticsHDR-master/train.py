@@ -887,7 +887,7 @@ print_dir = '%s/step_%06d' % (im_dir, step)
 
 print("Generating validation xs with current PSF value ...")
 x_valid = []
-for b in range(int(y_valid.shape[0] / FLAGS.batch_size)):
+for b in range(int(len(y_valid) / FLAGS.batch_size)):
     y_batch = y_valid[b * FLAGS.batch_size:(b + 1) * FLAGS.batch_size, :, :, :]
     feed_dict = {y_: y_batch}
     x_valid_batch = sess.run(x, feed_dict=feed_dict)
