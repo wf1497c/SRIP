@@ -51,7 +51,6 @@
 #include <string>
 #include <math.h>
 #include <random>
-
 #include "opencv2/opencv.hpp"
 #include "util.h"
 
@@ -130,7 +129,8 @@ struct VirtualCamera
     // Read an input image
     bool read()
     {
-        host_im = cv::imread(fname.c_str(), CV_LOAD_IMAGE_COLOR|CV_LOAD_IMAGE_ANYDEPTH);
+        // replace CV_LOAD_IMAGE_COLOR with IMREAD_COLOR
+        host_im = cv::imread(fname.c_str(), IMREAD_COLOR|IMREAD_ANYDEPTH);  
         sz[0] = host_im.rows; sz[1] = host_im.cols; sz[2] = host_im.channels();
 
         // If needed, convert to float and normalize
@@ -146,7 +146,7 @@ struct VirtualCamera
             multiply(host_im, (1.0f/ma) * Scalar(1,1,1), host_im);
         }
 
-        cv::cvtColor(host_im, host_im, CV_BGR2RGB, 0);
+        cv::cvtColor(host_im, host_im, COLOR_BGR2RGB, 0);
 
         init();
 
@@ -180,9 +180,9 @@ struct VirtualCamera
 
         // Write JPG compressed LDR image
         host_roi.convertTo(host_roi8, CV_8UC3, 255.0f);
-        cvtColor(host_roi8, host_roi8, CV_BGR2RGB);
+        cvtColor(host_roi8, host_roi8, COLOR_BGR2RGB);
         std::vector<int> compression_params;
-        compression_params.push_back(CV_IMWRITE_JPEG_QUALITY);
+        compression_params.push_back(IMWRITE_JPEG_QUALITY);
         compression_params.push_back(min(P->jpgQ + rand() % (105-P->jpgQ), 100));
         imwrite(str, host_roi8, compression_params);
     }
@@ -286,14 +286,14 @@ struct VirtualCamera
 
                     float hue = P->distribution_hue(P->generator);
                     float sat = P->distribution_sat(P->generator);
-                    cvtColor(host_roi,host_roi,CV_RGB2HSV);
+                    cvtColor(host_roi,host_roi,COLOR_RGB2HSV);
 
                     std::vector<cv::Mat> planes(3);
                     cv::split(host_roi, planes);
                     planes[0] += hue;
                     planes[1] += sat;
                     merge(planes,host_roi);
-                    cvtColor(host_roi,host_roi,CV_HSV2RGB);
+                    cvtColor(host_roi,host_roi,COLOR_HSV2RGB);
 
                     pow(host_roi, 2.0, host_roi);
                 }

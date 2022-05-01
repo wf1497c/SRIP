@@ -10,7 +10,7 @@ from bs4 import BeautifulSoup
 #HDREye can be downloaded over FTP
 
 #Download the EXR files from Fairchild
-FairChild=False
+FairChild=True
 if FairChild:
     web_address="http://rit-mcsl.org/fairchild//HDRPS/HDRthumbs.html"
     out_dir='./HDR_dataset/Fairchild/'
