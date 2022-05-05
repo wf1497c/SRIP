@@ -137,6 +137,7 @@ sx = FLAGS.sx
 sy = FLAGS.sy
 data_dir_bin = os.path.join(FLAGS.data_dir, "bin")
 data_dir_jpg = os.path.join(FLAGS.data_dir, "jpg")
+print('-------------',data_dir_jpg,'-----------------')
 log_dir = os.path.join(FLAGS.output_dir, "logs")
 im_dir = os.path.join(FLAGS.output_dir, "im")
 
@@ -512,6 +513,8 @@ for i in range(len(frames_valid)):
     if i % 10 == 0:
         print("\tframe %d of %d" % (i, len(frames_valid)))
 
+    print(data_dir_bin)
+    print(data_dir_jpg)
     # succ, xv, yv = img_io.load_training_pair(os.path.join(data_dir_bin, frames_valid[i]), os.path.join(data_dir_jpg, frames_valid[i].replace(".bin", ".jpg")))
     succ, _, yv = img_io.load_training_pair(os.path.join(data_dir_bin, frames_valid[i]),
                                             os.path.join(data_dir_jpg, frames_valid[i].replace(".bin", ".jpg")))
@@ -746,7 +749,7 @@ def calc_loss_and_print(x_data, y_data, print_dir, step, N, psf_val=None):
 
 
 
-    for b in range(int(x_data.shape[0] / FLAGS.batch_size)):
+    for b in range(int(len(x_data) / FLAGS.batch_size)):
         x_batch = x_data[b * FLAGS.batch_size:(b + 1) * FLAGS.batch_size, :, :, :]
         y_batch = y_data[b * FLAGS.batch_size:(b + 1) * FLAGS.batch_size, :, :, :]
         feed_dict = {x: x_batch, y_: y_batch}#This will overwrite my existing definition of x, which depends on y_
@@ -817,13 +820,13 @@ def calc_loss_and_print(x_data, y_data, print_dir, step, N, psf_val=None):
         g_psf = g_psf / (g_psf.max() + 1e-12)
         b_psf = b_psf - b_psf.min()
         b_psf = b_psf / (b_psf.max() + 1e-12)
-        scipy.misc.toimage(np.squeeze(r_psf), cmin=0.0, cmax=1.0).save("%s/%06d_R_PSF.png" % (print_dir, step))
-        scipy.misc.toimage(np.squeeze(g_psf), cmin=0.0, cmax=1.0).save("%s/%06d_G_PSF.png" % (print_dir, step))
-        scipy.misc.toimage(np.squeeze(b_psf), cmin=0.0, cmax=1.0).save("%s/%06d_B_PSF.png" % (print_dir, step))
-        scipy.misc.toimage(np.squeeze(log_r_psf), cmin=0.0, cmax=1.0).save("%s/%06d_R_logPSF.png" % (print_dir, step))
-        scipy.misc.toimage(np.squeeze(log_g_psf), cmin=0.0, cmax=1.0).save("%s/%06d_G_logPSF.png" % (print_dir, step))
-        scipy.misc.toimage(np.squeeze(log_b_psf), cmin=0.0, cmax=1.0).save("%s/%06d_B_logPSF.png" % (print_dir, step))
-    return (val_loss / n_batch, orig_loss / n_batch)
+        #scipy.misc.toimage(np.squeeze(r_psf), cmin=0.0, cmax=1.0).save("%s/%06d_R_PSF.png" % (print_dir, step))
+        #scipy.misc.toimage(np.squeeze(g_psf), cmin=0.0, cmax=1.0).save("%s/%06d_G_PSF.png" % (print_dir, step))
+        #scipy.misc.toimage(np.squeeze(b_psf), cmin=0.0, cmax=1.0).save("%s/%06d_B_PSF.png" % (print_dir, step))
+        #scipy.misc.toimage(np.squeeze(log_r_psf), cmin=0.0, cmax=1.0).save("%s/%06d_R_logPSF.png" % (print_dir, step))
+        #scipy.misc.toimage(np.squeeze(log_g_psf), cmin=0.0, cmax=1.0).save("%s/%06d_G_logPSF.png" % (print_dir, step))
+        #scipy.misc.toimage(np.squeeze(log_b_psf), cmin=0.0, cmax=1.0).save("%s/%06d_B_logPSF.png" % (print_dir, step))
+    return val_loss, orig_loss#(val_loss / n_batch, orig_loss / n_batch)
 
 #=== Setup threads and load parameters ========================================
 
