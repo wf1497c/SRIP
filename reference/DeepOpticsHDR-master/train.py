@@ -1019,6 +1019,7 @@ while not coord.should_stop():
         plt.colorbar(imgplot)
         plt.title('Blue Channel log(PSF)')
         plt.show()
+        plt.savefig('test.jpg')
         if np.isnan(psf_val).any():
             print('NaN observed')
 
