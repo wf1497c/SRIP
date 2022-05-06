@@ -73,8 +73,8 @@ struct Params
         sigmoid_n[0] = 0.9; sigmoid_n[1] = 0.1;  // Sigmoidal parameter 'n' mean and std
         sigmoid_a[0] = 0.6; sigmoid_a[1] = 0.1;  // Sigmoidal parameter 'a' mean and std
         jpgQ = 30;                               // Minimum JPEG quality
-        ipath = "input_data";                    // Input data directory
-        opath = "training_data";                 // Output training data directory
+        ipath = "/home/wf1497c/ML/SRIP/reference/DeepOpticsHDR-master/input_data";                    // Input data directory
+        opath = "/home/wf1497c/ML/SRIP/reference/DeepOpticsHDR-master/training_data";                 // Output training data directory
 
         // Normal distributions for randomizing camera parameters
         distribution_hue = normal_distribution<float>(hue[0],hue[1]);
