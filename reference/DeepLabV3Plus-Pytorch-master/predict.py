@@ -15,7 +15,10 @@ from metrics import StreamSegMetrics
 import torch
 import torch.nn as nn
 
+
 from PIL import Image
+from PIL import ImageFile
+ImageFile.LOAD_TRUNCATED_IMAGES = True
 import matplotlib
 import matplotlib.pyplot as plt
 from glob import glob
