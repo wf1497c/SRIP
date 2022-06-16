@@ -307,6 +307,7 @@ def main():
     else:
         print("[!] Retrain")
         model = nn.DataParallel(model)
+        print("Model to Device")
         model.to(device)
 
     # ==========   Train Loop   ==========#
@@ -322,6 +323,7 @@ def main():
         return
 
     interval_loss = 0
+    print("=====  Training Starts =====")
     while True:  # cur_itrs < opts.total_itrs:
         # =====  Train  =====
         model.train()
