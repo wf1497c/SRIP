@@ -17,3 +17,184 @@
       - pytorch::torchvision=0.11.3=py39_cu113
       - ffmpeg=4.2.2
       - tqdm=4.62.3
+
+1.10.2-nocuda-ubuntu20.04:
+  extra_tags:
+  - 1.10.2-nocuda
+  template:
+    path: templates/20220207.dockerfile.jinja2
+    vars:
+      base_image: ubuntu:20.04
+    conda_dependencies:
+      - numpy=1.21.2
+      - pillow=8.4.0
+      - pip=21.2.4
+      - python=3.9.7
+      - pytorch::pytorch=1.10.2=py3.9_cpu_0
+      - scipy=1.7.3
+      - pytorch::torchvision=0.11.3=py39_cpu
+      - ffmpeg=4.2.2
+      - tqdm=4.62.3
+
+1.10.0-cuda11.3-ubuntu20.04:
+  extra_tags:
+  - 1.10.0-cuda11.3
+  template:
+    path: templates/20211029.dockerfile.jinja2
+    vars:
+      base_image: nvidia/cuda:11.3.1-base-ubuntu20.04
+    conda_dependencies:
+      - nvidia::cudatoolkit=11.3.1
+      - numpy=1.21.2
+      - pillow=8.4.0
+      - pip=21.2.4
+      - python=3.9.7
+      - pytorch::pytorch=1.10.0=py3.9_cuda11.3_cudnn8.2.0_0
+      - scipy=1.7.1
+      - pytorch::torchvision=0.11.1=py39_cu113
+      - tqdm=4.62.3
+
+1.10.0-nocuda-ubuntu20.04:
+  extra_tags:
+  - 1.10.0-nocuda
+  template:
+    path: templates/20211029.dockerfile.jinja2
+    vars:
+      base_image: ubuntu:20.04
+    conda_dependencies:
+      - numpy=1.21.2
+      - pillow=8.4.0
+      - pip=21.2.4
+      - python=3.9.7
+      - pytorch::pytorch=1.10.0=py3.9_cpu_0
+      - scipy=1.7.1
+      - pytorch::torchvision=0.11.1=py39_cpu
+      - tqdm=4.62.3
+
+1.8.1-cuda11.1-ubuntu20.04:
+  extra_tags:
+  - 1.8.1-cuda11.1
+  template:
+    path: templates/ubuntu20.04.dockerfile.jinja2
+    vars:
+      base_image: nvidia/cuda:11.1.1-base-ubuntu20.04
+      additional_steps: |-
+        # CUDA 11.1-specific steps
+        RUN conda install -y -c conda-forge cudatoolkit=11.1.1 \
+         && conda install -y -c pytorch \
+            "pytorch=1.8.1=py3.8_cuda11.1_cudnn8.0.5_0" \
+            "torchvision=0.9.1=py38_cu111" \
+         && conda clean -ya
+
+1.7.0-cuda11.0-ubuntu20.04:
+  extra_tags:
+  - 1.7.0-cuda11.0
+  template:
+    path: templates/ubuntu20.04.dockerfile.jinja2
+    vars:
+      base_image: nvidia/cuda:11.0-base-ubuntu20.04
+      additional_steps: |-
+        # CUDA 11.0-specific steps
+        RUN conda install -y -c pytorch \
+            cudatoolkit=11.0.221 \
+            "pytorch=1.7.0=py3.8_cuda11.0.221_cudnn8.0.3_0" \
+            "torchvision=0.8.1=py38_cu110" \
+         && conda clean -ya
+
+1.5.0-cuda10.2-ubuntu18.04:
+  deprecated: true
+  extra_tags:
+  - 1.5.0-cuda10.2
+  template:
+    path: templates/ubuntu18.04.dockerfile.jinja2
+    vars:
+      base_image: nvidia/cuda:10.2-base-ubuntu18.04
+      additional_steps: |-
+        # CUDA 10.2-specific steps
+        RUN conda install -y -c pytorch \
+            cudatoolkit=10.2 \
+            "pytorch=1.5.0=py3.8_cuda10.2.89_cudnn7.6.5_0" \
+            "torchvision=0.6.0=py38_cu102" \
+         && conda clean -ya
+
+1.5.0-cuda9.2-ubuntu18.04:
+  deprecated: true
+  extra_tags:
+  - 1.5.0-cuda9.2
+  template:
+    path: templates/ubuntu18.04.dockerfile.jinja2
+    vars:
+      base_image: nvidia/cuda:9.2-base-ubuntu18.04
+      additional_steps: |-
+        # CUDA 9.2-specific steps
+        RUN conda install -y -c pytorch \
+            cudatoolkit=9.2 \
+            "pytorch=1.5.0=py3.8_cuda9.2.148_cudnn7.6.3_0" \
+            "torchvision=0.6.0=py38_cu92" \
+         && conda clean -ya
+
+1.5.0-nocuda-ubuntu18.04:
+  deprecated: true
+  extra_tags:
+  - 1.5.0-nocuda
+  template:
+    path: templates/ubuntu18.04.dockerfile.jinja2
+    vars:
+      base_image: ubuntu:18.04
+      additional_steps: |-
+        # No CUDA-specific steps
+        ENV NO_CUDA=1
+        RUN conda install -y -c pytorch \
+            cpuonly \
+            "pytorch=1.5.0=py3.8_cpu_0" \
+            "torchvision=0.6.0=py38_cpu" \
+         && conda clean -ya
+
+1.4.0-cuda10.1-ubuntu16.04:
+  deprecated: true
+  extra_tags:
+  - 1.4.0-cuda10.1
+  template:
+    path: templates/ubuntu16.04.dockerfile.jinja2
+    vars:
+      base_image: nvidia/cuda:10.1-base-ubuntu16.04
+      additional_steps: |-
+        # CUDA 10.1-specific steps
+        RUN conda install -y -c pytorch \
+            cudatoolkit=10.1 \
+            "pytorch=1.4.0=py3.6_cuda10.1.243_cudnn7.6.3_0" \
+            "torchvision=0.5.0=py36_cu101" \
+         && conda clean -ya
+
+1.4.0-cuda9.2-ubuntu16.04:
+  deprecated: true
+  extra_tags:
+  - 1.4.0-cuda9.2
+  template:
+    path: templates/ubuntu16.04.dockerfile.jinja2
+    vars:
+      base_image: nvidia/cuda:9.2-base-ubuntu16.04
+      additional_steps: |-
+        # CUDA 9.2-specific steps
+        RUN conda install -y -c pytorch \
+            cudatoolkit=9.2 \
+            "pytorch=1.4.0=py3.6_cuda9.2.148_cudnn7.6.3_0" \
+            "torchvision=0.5.0=py36_cu92" \
+         && conda clean -ya
+
+1.4.0-nocuda-ubuntu16.04:
+  deprecated: true
+  extra_tags:
+  - 1.4.0-nocuda
+  template:
+    path: templates/ubuntu16.04.dockerfile.jinja2
+    vars:
+      base_image: ubuntu:16.04
+      additional_steps: |-
+        # No CUDA-specific steps
+        ENV NO_CUDA=1
+        RUN conda install -y -c pytorch \
+            cpuonly \
+            "pytorch=1.4.0=py3.6_cpu_0" \
+            "torchvision=0.5.0=py36_cpu" \
+         && conda clean -ya

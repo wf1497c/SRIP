@@ -13,8 +13,14 @@ spec:
               values: ["1070", "1080", "M4000", "NVIDIA-GeForce-GTX-1080", "NVIDIA-GeForce-GTX-1070", "Quadro-M4000", "Tesla-K40c"]
   containers:
   - name: gpu-container
-    image: gitlab-registry.nrp-nautilus.io/HYTang/proj1:b0164d23
+    image: gitlab-registry.nrp-nautilus.io/jiacheng/proj1:2474609a #gitlab-registry.nautilus.optiputer.net/jiacheng/docker-images:torch_test #nvidia/cuda:8.0-runtime
     args: ["sleep", "infinity"]
+    # args:
+    #     - clone
+    #     - --single
+    #     - --
+    #     - https://github.com/wf1497c/SRIP/tree/main/reference/DeepOpticsHDR-master
+    #     - /data
     volumeMounts:
     - mountPath: /data
       name: data
