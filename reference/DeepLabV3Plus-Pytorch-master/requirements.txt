@@ -4,4 +4,3 @@ pillow
 scikit-learn
 tqdm
 matplotlib
-visdom
