@@ -1,5 +1,4 @@
-torch
-torchvision
+pytorch
 numpy
 pillow
 scikit-learn
