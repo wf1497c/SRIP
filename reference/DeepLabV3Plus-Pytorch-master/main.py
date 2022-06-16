@@ -16,6 +16,8 @@ import torch.nn as nn
 from utils.visualizer import Visualizer
 
 from PIL import Image
+from PIL import ImageFile
+ImageFile.LOAD_TRUNCATED_IMAGES = True
 import matplotlib
 import matplotlib.pyplot as plt
 
