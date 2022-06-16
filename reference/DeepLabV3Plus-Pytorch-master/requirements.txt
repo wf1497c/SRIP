@@ -1,7 +1,5 @@
-pytorch
 numpy
 pillow
 scikit-learn
 tqdm
 matplotlib
-visdom

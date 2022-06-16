@@ -322,6 +322,8 @@ def main():
         return
 
     interval_loss = 0
+    
+    print("=====  Training Starts =====")
     while True:  # cur_itrs < opts.total_itrs:
         # =====  Train  =====
         model.train()
