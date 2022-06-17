@@ -326,6 +326,7 @@ def main():
     print("=====  Training Starts =====")
     while True:  # cur_itrs < opts.total_itrs:
         # =====  Train  =====
+        torch.cuda.empty_cache()
         model.train()
         cur_epochs += 1
         for (images, labels) in train_loader:
