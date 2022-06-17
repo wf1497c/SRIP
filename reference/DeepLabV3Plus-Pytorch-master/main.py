@@ -20,6 +20,7 @@ from PIL import ImageFile
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 import matplotlib
 import matplotlib.pyplot as plt
+torch.cuda.empty_cache()
 
 
 def get_argparser():
