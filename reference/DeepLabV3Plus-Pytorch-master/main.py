@@ -20,7 +20,10 @@ from PIL import ImageFile
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 import matplotlib
 import matplotlib.pyplot as plt
-torch.cuda.empty_cache()
+from numba import cuda
+cuda.select_device(0)
+cuda.close()
+cuda.select_device(0)
 
 
 def get_argparser():
