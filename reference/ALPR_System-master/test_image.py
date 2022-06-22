@@ -22,5 +22,7 @@ if possible_plates is not None:
         chars_on_plate = plateDetector.char_on_plate[i]
         recognized_plate, _ = myNetwork.label_image_list(chars_on_plate, imageSizeOuput=128)
         print(recognized_plate)
+        filename = f"{i}.png"
         cv2.imshow('plate', p)
-        cv2.waitKey(0)
+        cv2.imwrite(filename, p)
+        #cv2.waitKey(0)
