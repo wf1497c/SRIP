@@ -21,3 +21,4 @@ dependencies:
 - numpy
 - visdom
 - numba
+- opencv==3.1
