@@ -7,4 +7,4 @@ with zipfile.ZipFile("gtFine_trainvaltest.zip","r") as zip_ref:
     zip_ref.extractall("./datasets/data/cityscapes/")
 
 with zipfile.ZipFile("leftImg8bit_blurred.zip","r") as zip_ref:
-    zip_ref.extractall("./test_images/cityscapes/")
+    zip_ref.extractall("./datasets/data/cityscapes/")

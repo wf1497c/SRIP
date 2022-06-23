@@ -1,4 +1,4 @@
-name: fastai
+name: deeplab
 channels:
 - fastai
 - pytorch
@@ -19,3 +19,5 @@ dependencies:
 - tqdm
 - scikit-learn
 - numpy
+- visdom
+- numba
