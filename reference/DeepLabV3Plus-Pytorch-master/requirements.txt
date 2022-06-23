@@ -3,5 +3,11 @@ pillow
 scikit-learn
 tqdm
 matplotlib
+<<<<<<< HEAD
 torch==1.4.0 
 torchvision==0.5.0 
+=======
+torch==1.4.0  --find-links https://download.pytorch.org/whl/torch_stable.html
+torchvision==0.5.0  --find-links https://download.pytorch.org/whl/torch_stable.html
+numda
+>>>>>>> 3bf243207d1dc9c62a2e91249101070a345f0ab2
