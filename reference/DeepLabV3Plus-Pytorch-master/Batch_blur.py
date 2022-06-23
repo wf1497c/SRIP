@@ -2,7 +2,8 @@ import matplotlib.pyplot as plt
 import cv2
 import os
 
-root = "./datasets/data/cityscapes/leftImg8bit/train"
+root = "./datasets/cityscapes/leftImg8bit/train"
+num = os.listdir(root)
 for dirname in os.listdir(root):
     path = os.path.join(root,dirname)
     for filename in os.listdir(path):
