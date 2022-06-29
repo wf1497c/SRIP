@@ -7,7 +7,8 @@ import argparse
 import numpy as np
 
 from torch.utils import data
-from datasets import VOCSegmentation, Cityscapes
+from datasets import Cityscapes
+#from datasets import VOCSegmentation, Cityscapes
 from utils import ext_transforms as et
 from metrics import StreamSegMetrics
 
@@ -129,10 +130,10 @@ def get_dataset(opts):
                 et.ExtNormalize(mean=[0.485, 0.456, 0.406],
                                 std=[0.229, 0.224, 0.225]),
             ])
-        train_dst = VOCSegmentation(root=opts.data_root, year=opts.year,
-                                    image_set='train', download=opts.download, transform=train_transform)
-        val_dst = VOCSegmentation(root=opts.data_root, year=opts.year,
-                                  image_set='val', download=False, transform=val_transform)
+        # train_dst = VOCSegmentation(root=opts.data_root, year=opts.year,
+        #                             image_set='train', download=opts.download, transform=train_transform)
+        # val_dst = VOCSegmentation(root=opts.data_root, year=opts.year,
+        #                           image_set='val', download=False, transform=val_transform)
 
     if opts.dataset == 'cityscapes':
         train_transform = et.ExtCompose([
