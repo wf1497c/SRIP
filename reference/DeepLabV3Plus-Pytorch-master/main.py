@@ -7,8 +7,8 @@ import argparse
 import numpy as np
 
 from torch.utils import data
-from datasets import Cityscapes
-#from datasets import VOCSegmentation, Cityscapes
+#from datasets import cityscapes
+from datasets import VOCSegmentation, Cityscapes
 from utils import ext_transforms as et
 from metrics import StreamSegMetrics
 
